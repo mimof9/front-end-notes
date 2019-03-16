@@ -45,7 +45,7 @@ Son.prototype.constructor = Son; // 原型指向的构造函数改为Son, 实例
 // 组合继承的缺点是因为继承了实例属性 那么如何让它只继承父原原型属性呢？
 function nolyPrototype(Parent) {
 	function F(){}
-	F.prototype = Parent.prototype;
+	F.prototype = Parent.prototype; // 这样写不行 因为原型是对象 下面的修改会改变父原型 需要父原型的副本
 	F.prototype.constructor = F; // 这样new F() 就只继承了父原型属性
 	return new F();
 }
@@ -63,7 +63,7 @@ function create(o) {
 	F.prototype = o;	// 本质上就是创建了o的副本
 	return new F();
 }
-// 所以寄生式组合继承可以像下面这样写 书上是这样写的
+// 所以寄生组合式继承可以像下面这样写 这样写才是对的
 function inherit(Son, Parent) {
 	let tmp = create(Parent.prototype); // 创建父原型的副本
 	tmp.constructor = Son;
@@ -74,3 +74,14 @@ function Son(age) {
 	this.age = age;
 }
 inherit(Son, Parent);
+
+// ES5 之后 寄生组合式继承应该这样写
+function Son(age) {
+	Parent.apply(this, name);
+	this.age = age;
+}
+var parentprototype = Object.create(Parent.prototype);
+parentprototype.constructor = Son;
+Son.prototype = parentprototype;
+
+// ES6之后 直接class 不过也是语法糖 暂且不说
