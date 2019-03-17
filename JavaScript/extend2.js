@@ -26,15 +26,15 @@ Son.prototype = new Parent(); // 子原型改为父实例
 // 缺点：父实例属性变为了子原型属性，这些属性变成了共享属性
 
 // 2. 借用父构造函数复用代码
-function Son(age) {
-	Parent.apply(this, name); // 子构造函数中调用父构造函数
+function Son(name, age) {
+	Parent.call(this, name); // 子构造函数中调用父构造函数
 	this.age = age;
 }
 // 缺点：只能继承父实例属性，无法继承父原型属性
 
 // 3. 组合继承 组合1. 2.
-function Son(age) {
-	Parent.apply(this, name);
+function Son(name, age) {
+	Parent.call(this, name);
 	this.age = age;
 }
 Son.prototype = new Parent();	// 原型链继承
@@ -50,17 +50,17 @@ function nolyPrototype(Parent) {
 	return new F();
 }
 
-function Son(age) {
-	Parent.apply(this, name);
+function Son(name, age) {
+	Parent.call(this, name);
 	this.age = age;
 }
 Son.prototype = nolyPrototype(Parent);
 Son.prototype.constructor = Son;
 
-// Object.create() 以o为原型创建对象(只继承o的原型属性) 下面是实现
+// Object.create() 以o为原型创建对象 下面是实现
 function create(o) {
 	function F() {}
-	F.prototype = o;	// 这样其实就是实现了F原型只继承o的原型属性
+	F.prototype = o;
 	return new F();
 }
 // new 操作符具体做了如下
@@ -77,15 +77,15 @@ function inherit(Son, Parent) {
 	tmp.constructor = Son;
 	Son.prototype = tmp;
 }
-function Son(age) {
-	Parent.apply(this, name);
+function Son(name, age) {
+	Parent.call(this, name);
 	this.age = age;
 }
 inherit(Son, Parent);
 
 // ES5 之后 寄生组合式继承应该这样写
-function Son(age) {
-	Parent.apply(this, name);
+function Son(name, age) {
+	Parent.call(this, name);
 	this.age = age;
 }
 var parentprototype = Object.create(Parent.prototype);

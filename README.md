@@ -1,5 +1,46 @@
 # 前端读书笔记
 
+```
+// 定义对象 构造函数定义实例属性(一般是属性) 原型对象定义共享属性(一般是方法)
+// 定义父对象
+function Parent(name) {
+	this.name = name;
+	console.log('Parent');
+}
+Parent.prototype.sayName = function() {
+	console.log(this.name);
+}
+
+// 继承 借用父构造函数复用父实例属性 原型对象复用父原型属性 想要理解 必须理解Object.create()和new
+// 定义子对象
+function Son(name, age) {
+	Parent.call(this, name); // 复用父实例属性
+	this.age = age;
+	console.log('Son');
+}
+// 两步构造子原型对象
+var sonPrototype = Object.create(Parent.prototype); // 提取出父原型属性 构造函数为空函数
+sonPrototype.constructor = Son; // 构造函数改为子构造函数 复用父实例属性
+Son.prototype = sonPrototype; // 将上面构造好的子原型对象赋给子原型
+
+// 创建子对象
+var s = new Son('mm', 18);
+
+// 解析Object.create(o) 以o为原型创建对象(o作为新对象原型链上一级 且o没有实例属性)
+function create(o) {
+	function F() {}
+	F.prototype = o;
+	return new F();
+}
+// 解析new操作符
+function myNew(Func) {
+	var o = new Object(); // 创建一个新对象
+	Func.apply(o); // 以新对象为环境执行构造函数
+	o.__proto__ = Func.prototype; // 新对象[[Prototype]]指向构造函数的原型对象
+	return o;
+}
+```
+
 ## JavaScript语言精粹
 - 薄而有深度
 - 有很多实践被ES5标准采用
