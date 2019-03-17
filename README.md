@@ -56,3 +56,4 @@ function myNew(Func) {
 - 第4章 作用域和垃圾清除 需要重点看
 - 第6章 主要讲了两个部分，创建对象和如何实现继承，需要细细品味 极其精彩，代码放在extends.js和createObject.js
 - 第7章 讲函数 最重要的概念是作用域链[[Scope]] 加上JS的GC，返回函数为什么能实现闭包通过作用域链一目了然。后面讲了如何实现块级作用域，私有变量，模块等 都是建立在作用域链上的。
+- 第8章 BOM window和框架 top parent self 要好好理解 然后是location获取search 最后是navigator来检测浏览器。做大致了解即可。
