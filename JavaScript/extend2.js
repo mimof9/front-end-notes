@@ -57,15 +57,23 @@ function Son(age) {
 Son.prototype = nolyPrototype(Parent);
 Son.prototype.constructor = Son;
 
-// Object.create() 创建传入的对象的副本 下面是实现
+// Object.create() 以o为原型创建对象(只继承o的原型属性) 下面是实现
 function create(o) {
 	function F() {}
-	F.prototype = o;	// 本质上就是创建了o的副本
+	F.prototype = o;	// 这样其实就是实现了F原型只继承o的原型属性
 	return new F();
 }
+// new 操作符具体做了如下
+function myNew(Func) {
+	var o = new Object();
+	Func.apply(o);				//执行的是传入的构造函数
+	o.__proto__ = Func.prototype;
+	return o;
+}
+
 // 所以寄生组合式继承可以像下面这样写 这样写才是对的
 function inherit(Son, Parent) {
-	let tmp = create(Parent.prototype); // 创建父原型的副本
+	let tmp = create(Parent.prototype);
 	tmp.constructor = Son;
 	Son.prototype = tmp;
 }
