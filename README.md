@@ -58,4 +58,5 @@ function myNew(Func) {
 - 第7章 讲函数 最重要的概念是作用域链[[Scope]] 加上JS的GC，返回函数为什么能实现闭包通过作用域链一目了然。后面讲了如何实现块级作用域，私有变量，模块等 都是建立在作用域链上的。
 - 第8章 BOM window和框架 top parent self 要好好理解 然后是location获取search 最后是navigator来检测浏览器。做大致了解即可。
 - 第9章 客户端检测 讲了能力检测 怪癖/Bug检测 用户代理检测(检测渲染引擎 浏览器等) 原则是确定浏览器是否具有某能力比用得什么代理更加有用。
-- 第10章 DOM 讲了基本的使用JS操作DOM的方法 document element节点如何操作节点属性和文本是重点 还讲了动态脚本和样式的两种实现方法 基础好可跳过。
+- 第10章 DOM 讲了基本的使用JS操作DOM的方法 document element节点如何操作节点属性和文本是重点 还讲了动态脚本和样式的两种实现方法 基础好可跳过。 这一章有个必须理解的概念，通过childNodes attribute等返回的这类集合属性，在访问它们的时候才去查询DOM树，因此会动态更新，然而也会带来性能问题。
+- 第11章 DOM扩展 主要理解选择器APIquerySelector/All 和H5规定的很多规范 getElementByClassName innerHTML outerHtml已经这这类方法的性能问题
