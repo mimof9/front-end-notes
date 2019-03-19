@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件</title>
+</head>
+<body>
+	<div>abc</div>
+	<script type="text/javascript">
+		var btn = document.getElementsByTagName('div')[0];
+		btn.addEventListener('click', function(){
+			console.log(event.clientX, event.clientY);
+		})
+	</script>
+</body>
+</html>

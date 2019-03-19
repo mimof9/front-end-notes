@@ -62,9 +62,15 @@ function myNew(Func) {
 - 第11章 DOM扩展 主要理解选择器APIquerySelector/All 和H5规定的很多规范 getElementByClassName innerHTML outerHtml已经这这类方法的性能问题 还有一个问题就是DOM中的空白文本节点，元素遍历提供了nodelist来获取忽略它们的对象
 - 第12章 DOM2和DOM3 xmlns命令空间的概念不知道有什么用 但是DOM2样式操作属于必会的内容 内联style属性用元素节点的style对象操作(样式表的计算属性用window.getComputedStyle()获取 只读) style标签样式和link标签引入的样式用document.styleSheet[0].cssRule[0].style操作 元素大小offset client scroll这三个代表的偏移位置和大小 DOM2提供了遍历文档的 document.createTreeWalker和一个简单版 关于范围的选择 我个人的看法是没必要掌握 大可以构建更好的HTML然后操作元素节点来做。
 - 第13章 事件 也是重中之重 
-	+ 事件流：捕获流->事件处理程序/监听器->冒泡流
-	+ 事件处理程序会自动获得event和this event代表事件 this指向出发事件的元素
-	+ HTML事件处理程序： onclick属性
-	+ DOM0级事件处理程序： 元素节点.onclick = function() {} 冒泡阶段
-	+ DOM2级事件处理程序： 元素节点.addEventListener('onclick', function(){}, false) true为捕获阶段 false为冒泡阶段 removeEventListener('onclick', handler, false); 匿名处理函数删除不掉
-	+ IE8之前的事件处理程序：元素节点.attachEvent('click', function(){}) 冒泡阶段
+	* 事件流：捕获流->事件处理程序/监听器->冒泡流
+	* 事件处理程序会自动获得event和this event代表事件 this指向促发事件的元素
+	* 如何添加事件处理程序
+		+ HTML事件处理程序： onclick属性
+		+ DOM0级事件处理程序： 元素节点.onclick/*也可以用[]来访问*/ = function() {} 冒泡阶段
+		+ DOM2级事件处理程序： 元素节点.addEventListener('onclick', function(){}, false) true为捕获阶段 false为冒泡阶段 removeEventListener('onclick', handler, false); 匿名处理函数删除不掉
+		+ IE8之前的事件处理程序：元素节点.attachEvent('click', function(){}) 冒泡阶段
+	* 事件对象event
+	* 事件类型
+		+ load unload
+		+ 焦点事件 focus blur focusin focusout
+		+ 鼠标事件
