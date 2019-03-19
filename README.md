@@ -60,3 +60,4 @@ function myNew(Func) {
 - 第9章 客户端检测 讲了能力检测 怪癖/Bug检测 用户代理检测(检测渲染引擎 浏览器等) 原则是确定浏览器是否具有某能力比用得什么代理更加有用。
 - 第10章 DOM 讲了基本的使用JS操作DOM的方法 document element节点如何操作节点属性和文本是重点 还讲了动态脚本和样式的两种实现方法 基础好可跳过。 这一章有个必须理解的概念，通过childNodes attribute等返回的这类集合属性，在访问它们的时候才去查询DOM树，因此会动态更新，然而也会带来性能问题。
 - 第11章 DOM扩展 主要理解选择器APIquerySelector/All 和H5规定的很多规范 getElementByClassName innerHTML outerHtml已经这这类方法的性能问题 还有一个问题就是DOM中的空白文本节点，元素遍历提供了nodelist来获取忽略它们的对象
+- 第12章 DOM2和DOM3 xmlns命令空间的概念不知道有什么用 但是DOM2样式操作属于必会的内容 内联style属性用元素节点的style对象操作(样式表的计算属性用window.getComputedStyle()获取 只读) style标签样式和link标签引入的样式用document.styleSheet[0].cssRule[0].style操作 元素大小offset client scroll这三个代表的偏移位置和大小 DOM2提供了遍历文档的 document.createTreeWalker和一个简单版 关于范围的选择 我个人的看法是没必要掌握 大可以构建更好的HTML然后操作元素节点来做。
