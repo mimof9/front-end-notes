@@ -4,12 +4,28 @@
 	<title>事件</title>
 </head>
 <body>
-	<div>abc</div>
+
+	<div id="myDiv">右键点击弹出自定义菜单</div>	
+
+	<ul id="myMenu" style="position: absolute; visibility: hidden; background-color: silver;">
+		<li>123</li>
+		<li>234</li>
+		<li>345</li>
+	</ul>
+
 	<script type="text/javascript">
-		var btn = document.getElementsByTagName('div')[0];
-		btn.addEventListener('click', function(){
-			console.log(event.clientX, event.clientY);
-		})
+		var myDiv = document.getElementById('myDiv');
+		var myMenu = document.getElementById('myMenu');
+		document.oncontextmenu = function() {
+			event.preventDefault();
+			event.stopPropagation();
+			myMenu.style.visibility = 'visible';
+			myMenu.style.left = event.clientX + 'px';
+			myMenu.style.top = event.clientY + 'px';
+		}
+		document.onclick = function() {
+			myMenu.style.visibility = 'hidden';
+		}
 	</script>
 </body>
 </html>

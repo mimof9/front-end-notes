@@ -73,4 +73,14 @@ function myNew(Func) {
 	* 事件类型
 		+ load unload
 		+ 焦点事件 focus blur focusin focusout
-		+ 鼠标事件
+		+ 鼠标事件 鼠标位置 clientX/Y pageX/Y screenX/Y
+		+ 键盘事件 keydown keypress/textInput keyup 通过event.keyCode/charCode获取按下的键
+		+ 另外要清楚 删除节点，插入节点这种事件也可以监听
+		+ HTML5事件 contentmenu事件实现自定义右键菜单 DOMContentLoaded精确到DOM树加载完成 readystatechange+readyState(window, script, css才有)模拟DOMContentLoaded
+		+ 设备事件 横竖屏 重力感应方向 不是特别重要 当然如果开发移动端游戏很重要
+		+ 触摸和手势事件 touchstart touchmove touchend 属性 touches[] targetTouchs[] changeTouches[]
+			- 1.touches：当前位于屏幕上的所有手指的一个列表。
+			- 2.targetTouches：位于当前DOM元素上的手指的一个列表。
+			- 3.changedTouches：触发当前事件的手指的一个列表。
+	* 内存和性能 大量是事件处理程序会占用大量内存 可以采用事件委托来减少事件处理程序的数量 并且在一个事件不需要后或者对应的元素被删除后 手工删除事件处理函数
+- 第14章 讲表单对于表单 我个人兴致不高 不过后面的富文本倒是很有意思
