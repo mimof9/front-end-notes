@@ -61,3 +61,9 @@ function myNew(Func) {
 - 第10章 DOM 讲了基本的使用JS操作DOM的方法 document element节点如何操作节点属性和文本是重点 还讲了动态脚本和样式的两种实现方法 基础好可跳过。 这一章有个必须理解的概念，通过childNodes attribute等返回的这类集合属性，在访问它们的时候才去查询DOM树，因此会动态更新，然而也会带来性能问题。
 - 第11章 DOM扩展 主要理解选择器APIquerySelector/All 和H5规定的很多规范 getElementByClassName innerHTML outerHtml已经这这类方法的性能问题 还有一个问题就是DOM中的空白文本节点，元素遍历提供了nodelist来获取忽略它们的对象
 - 第12章 DOM2和DOM3 xmlns命令空间的概念不知道有什么用 但是DOM2样式操作属于必会的内容 内联style属性用元素节点的style对象操作(样式表的计算属性用window.getComputedStyle()获取 只读) style标签样式和link标签引入的样式用document.styleSheet[0].cssRule[0].style操作 元素大小offset client scroll这三个代表的偏移位置和大小 DOM2提供了遍历文档的 document.createTreeWalker和一个简单版 关于范围的选择 我个人的看法是没必要掌握 大可以构建更好的HTML然后操作元素节点来做。
+- 第13章 事件 事件流：捕获流->事件处理程序/监听器->冒泡流
+	+ 事件处理程序会自动获得event和this event代表事件 this指向出发事件的元素
+	+ HTML事件处理程序： onclick属性
+	+ DOM0级事件处理程序： 元素节点.onclick = function() {} 冒泡阶段
+	+ DOM2级事件处理程序： 元素节点.addEventListener('onclick', function(){}, false) true为捕获阶段 false为冒泡阶段 removeEventListener('onclick', handler, false); 匿名处理函数删除不掉
+	+ IE8之前的事件处理程序：元素节点.attachEvent('click', function(){}) 冒泡阶段
