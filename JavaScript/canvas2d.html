@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas绘图</title>
+</head>
+<body>
+	<img src="headphone.jpg" /> <br />
+	<canvas id='cvs2d' width="800px" height="800px">不支持canvas</canvas>
+
+	<script type="text/javascript">
+		var cvs = document.getElementById('cvs2d');
+		if (cvs.getContext) {	// 能力检测
+			var ctx2d = cvs.getContext('2d');
+
+			ctx2d.fillStyle = 'rgba(0, 0, 255, 0.5)';	// 填充色
+			ctx2d.strokeStyle = 'red';					// 描边色
+			ctx2d.lineWidth = 2;						// 线宽
+			ctx2d.lineCap = 'round';					// 线端形状 平butt 圆round 方square
+			ctx2d.lineJoin = 'round';					// 交点方式 圆round 斜交bevel 斜接miter
+			// 矩形
+			ctx2d.fillRect(0, 0, 100, 100);	// 填充 
+			ctx2d.strokeRect(102, 0, 99, 99); // 描边 线宽和宽高有什么关系？
+			ctx2d.clearRect(50, 25, 100, 50); // 本质上是把矩形区域变透明
+			// 路径
+			ctx2d.beginPath(); //开始描述路径
+			ctx2d.strokeStyle = 'black';
+			ctx2d.lineWidth = 1;
+			ctx2d.arc(150, 50, 45, 0, 2 * Math.PI, false); // 弧线
+			ctx2d.arc(150, 50, 42, 0, 2 * Math.PI, false);
+			ctx2d.moveTo(150, 50);	// 线段起点
+			ctx2d.lineTo(150, 10);	// 线段终点
+			ctx2d.moveTo(150, 50);
+			ctx2d.lineTo(120, 50)
+			ctx2d.stroke();	// 以描边方式绘制路径 还可以用fill clip等
+			// 文本
+			ctx2d.font = 'bold 14px Arial';
+			ctx2d.textAlign = 'end';
+			ctx2d.textBaseline = 'middle';
+			ctx2d.strokeText('9', 120, 50);
+			ctx2d.textAlign = 'center';		// 水平对齐 基准是 x， y
+			ctx2d.textBaseline = 'top';	// 垂直对齐
+			ctx2d.fillText('9', 120, 50);
+			// 变换
+			ctx2d.translate(150, 50); // 原点从 0, 0 变为150, 100
+			ctx2d.rotate(1);	// 坐标系顺时针旋转1弧度
+			ctx2d.beginPath();
+			ctx2d.moveTo(0, 0);
+			ctx2d.lineTo(20, 0);
+			ctx2d.stroke();
+			ctx2d.rotate(-1);	// 恢复坐标系
+			ctx2d.translate(-150, -50); // 恢复原点
+			// 图像
+			var image = document.getElementsByTagName('img')[0];
+			image.onload = function() {	// 图片加载需要时间 直接调用的话 没有效果
+				// ctx2d.drawImage(image, 50, 25, 50, 50); // 指定位置大小
+				ctx2d.drawImage(image, 0, 0, 100, 100, 50, 25, 50, 50); // 裁剪
+				// 模式
+				var pattern = ctx2d.createPattern(image, 'repeat'); // 利用图像创建模式
+				ctx2d.fillStyle = pattern;	// 填充内容改为模式
+				ctx2d.fillRect(202, 0, 300, 300);
+			}
+			// 阴影
+			ctx2d.fillRect(0, 101, 100, 100);
+			ctx2d.shadowOffsetX = 5;	// x轴距离
+			ctx2d.shadowOffsetY = 5;	// y轴距离
+			ctx2d.shadowBlur = 4;		// 模糊距离
+			ctx2d.shadowColor = 'rgba(0, 0, 0, 0.5)'; // 颜色
+			ctx2d.fillRect(101, 101, 100, 100);
+			ctx2d.shadowOffsetX = 0;	// x轴距离
+			ctx2d.shadowOffsetY = 0;	// 取消阴影
+			ctx2d.shadowBlur = 0;
+			ctx2d.shadowColor = 'rgba(0, 0, 0, 0)';
+			// 渐变
+			var gradient = ctx2d.createLinearGradient(0, 202, 100, 302); // 创建线性渐变区域
+			gradient.addColorStop(0, 'white');	// 起点白色
+			gradient.addColorStop(1, 'black'); 	// 终点黑色
+			ctx2d.fillStyle = gradient;	// 渐变作为图像，颜色
+			ctx2d.fillRect(0, 202, 100, 100); // 绘制区域要和渐变区域重合
+			gradient = ctx2d.createRadialGradient(151, 252, 20, 151, 252, 40); // 创建径向渐变
+			gradient.addColorStop(0, 'white');
+			gradient.addColorStop(1, 'black');
+			ctx2d.fillStyle = gradient;
+			ctx2d.fillRect(101, 202, 100, 100);
+			// 获取原始图像数据
+			var imgData = ctx2d.getImageData(0, 0, 302, 302); // ImageData实例属性 width height data(数组，每4位保存一个像素的rgba)
+			// 灰阶过滤 去掉颜色
+			var red, green, blue, alpha;
+			var data = imgData.data;
+			for (let i = 0; i < data.length; i += 4) {
+				red = data[i];
+				green = data[i+1];
+				blue = data[i+2];
+				alpha = data[i+3];
+				let average = Math.floor((red + green + blue) / 3);
+				data[i] = average;
+				data[i+1] = average;
+				data[i+2] = average;
+			}
+			imgData.data = data;
+			// ctx2d.putImageData(imgData, 0, 0);	// 把图片数据设置回去
+			// 合成
+			// globalCompositionOperation属性表示后绘制的图形怎样与先绘制的图形结合
+		}
+	</script>
+</body>
+</html>
