@@ -88,3 +88,8 @@ function myNew(Func) {
 - 第16章 HTML5一些新API 拖放事件(dataTransfer)。 媒体元素，音视频 自定义播放器很简单，因为这两个元素定义了很多属性以及方法来对此提供支持。 ajax之后前进后退基本废了，h5的状态管理可以在不重新加载页面的情况下改变URL。
 - 第17章 调试和错误处理 毕竟是经典，调试技巧都比较老了，看一下错误类型还有实现服务器日志的思路即可。
 - 第18，19章都是讲的XML 我跳过了
+- 第20章 JSON ES5规定了原生JSON对象 序列化JSON.stringify(jsobj, replacer, 4) 反序列化JSON.parse(jsonstr, reviver) 第二个参数都是函数 两个参数为key, value。 另外要理解序列化的顺序
+	* 调用toJSON()返回对象 没有该方法 直接返回原对象
+	* 过滤	参数2
+	* 序列化
+	* 格式化 参数3
