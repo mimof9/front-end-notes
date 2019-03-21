@@ -121,3 +121,9 @@ function myNew(Func) {
 	* 定时器 setTimeout实现循环任务 长时间任务通过定时器去分块执行 函数节流降低调用频率
 	* 自定义事件 myevent.html
 	* 拖放 mydrag.html
+- 第23章 离线应用和客户端存储
+	* 离线应用是指html的manifest属性 指定描述文件 指明哪些js css文件需要缓存 扩展名为.appcache
+	* 客户端存储技术 掌握3种即可
+		- cookie
+		- web storage的 sessionStorage和localStorage
+		- IndexedDB 类似SQL数据库
