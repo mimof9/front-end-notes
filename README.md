@@ -110,4 +110,14 @@ function myNew(Func) {
 		- Web Sockets	服务器和客户端的全双工通信
 	- 安全
 		- 未被授权系统有权访问某个资源的情况 称为CSRF跨站请求伪造
-		
+- 第22章 高级技巧 这一章有很多有意思的问题 值得看
+	* Object.prototype.toString.call(value) 检查value对象的[object [[class]]]
+	* 惰性载入函数
+		- 在第一次能力检测后覆盖原函数
+		- 根据能力检测返回不同的函数
+	* 函数绑定 Function.bind 如何是实现的 非常简单
+	* 函数柯里化的通用方式 也非常简单 就是创建一个原函数固定一些参数的版本
+	* 防篡改对象 不可扩展Object.preventExtensions() 密封Object.seal() 冻结Object.freeze()
+	* 定时器 setTimeout实现循环任务 长时间任务通过定时器去分块执行 函数节流降低调用频率
+	* 自定义事件 myevent.html
+	* 拖放 mydrag.html
