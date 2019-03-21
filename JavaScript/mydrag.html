@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>拖动元素</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div class="draggable" style="position: absolute; width: 200px; height: 200px; background: red;">
+	</div>
+
+	<script type="text/javascript">
+		var p = document.getElementsByTagName('div')[0];
+		p.move = false;
+		p.onmousedown = function() {
+			this.move = true;
+			this.left = event.clientX - this.offsetLeft;
+			this.top = event.clientY - this.offsetTop;
+		}
+		p.onmousemove = function() {
+			if (this.move) {
+				p.style.left = event.clientX-this.left + 'px';
+				p.style.top = event.clientY-this.top + 'px';
+			}
+		}
+		document.onmouseup = function() {	// 快速移动的时候
+			p.move = false;
+		}
+	</script>
+</body>
+</html>
