@@ -93,3 +93,21 @@ function myNew(Func) {
 	* 过滤	参数2
 	* 序列化
 	* 格式化 参数3
+- 第21章 Ajax 非常重要，XHR对象的使用流程(异步onreadystate事件) 如何指定请求头和相应类型
+	* FormData 使用Ajax序列化表单数据的XHR2级规范(可以自己实现)
+	* timeout和ontimeout 指定超时，原理也很简单
+	* 指定响应类型 overrideMimeType()
+	* 还提出了监控进度的事件 loadstart progress load/error/abort loadend
+	- 再接着就是跨域资源共享 理解其基本思想: Origin 请求头和 Access-Control-Allow-Origin匹配
+		- XDR
+		- XHR 原生支持 使用绝对URL就是跨域请求 相对URL就是同域请求
+		- Preflighted Requests
+		- withCredentials发送带cookie HTTP认证 客户端SSL证明的请求
+		- 图像ping
+		- JSONP 原理
+	- Comet 长轮询 流
+		- 服务器发送事件 SSE 服务器向客户端推送数据的单向连接
+		- Web Sockets	服务器和客户端的全双工通信
+	- 安全
+		- 未被授权系统有权访问某个资源的情况 称为CSRF跨站请求伪造
+		
