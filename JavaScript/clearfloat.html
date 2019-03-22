@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>清除浮动</title>
+	<style type="text/css">
+		#p1 {
+			border: 1px solid #888;
+			/*overflow: hidden;*/
+		}
+		#p1 div {
+			width: 100px;
+			height: 100px;
+		}
+		#d1 {
+			background: red;
+			float: left;
+		}
+		#d2 {
+			background: green;
+			float: left;
+		}
+		#d3 {
+			background: blue;
+			float: left;
+		}
+		#d4 {
+			width: 100px;
+			height: 100px;
+			background: black;
+		}
+		#p1:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<div id="p1">
+		<div id="d1"></div>
+		<div id="d2"></div>
+		<div id="d3"></div>
+	</div>
+	<!-- <div style="clear: both;"></div> -->
+	<div id="d4"></div>
+</body>
+</html>
