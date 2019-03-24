@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>外域资源</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function receiveMessage(event) {
+			// 检查来源 协议 域名 主机 端口号
+			if (event.origin !== 'http://localhost:8081')
+				return ;
+
+			// event.source 来源页 如果需要回发数据可以使用
+			// event.data 接收到的数据
+			console.log(JSON.parse(event.data));
+
+			event.source.postMessage("虽然我可以是任何类型，但浏览器只实现了string", event.origin);
+		}
+		window.addEventListener('message', receiveMessage, false);
+	</script>
+</body>
+</html>

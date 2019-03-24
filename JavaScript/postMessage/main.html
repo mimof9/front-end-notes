@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的网页</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		var otherDomain = window.open('otherDomain.html');
+
+		var obj = {
+			name: 'mimof',
+			age: 18
+		};
+
+		// 接收消息
+		function receiveMessage(event){
+		 	console.log(event.data);
+		}
+		window.addEventListener("message", receiveMessage, false);
+
+		// 发送消息 主要要等到other加载完毕才有效
+		otherDomain.onload = function() {
+			otherDomain.postMessage(JSON.stringify(obj), 'http://localhost:8081');
+		}
+		
+	</script>
+</body>
+</html>
