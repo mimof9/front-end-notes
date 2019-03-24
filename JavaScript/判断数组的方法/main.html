@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ifr</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<iframe src="./ifr.html" width="100px" height="100px"></iframe>
+	<p>必须要将两个文件放在服务器上 否则会出现跨域问题</p>
+	<script type="text/javascript">
+		// 当前框架
+		var arr = [2, 3, 4];
+		console.log(arr instanceof Array);
+		console.log(arr.constructor === Array);
+		console.log(Array.isArray(arr));
+		console.log(Object.prototype.toString.call(arr) === '[object Array]');
+		// 其他框架
+		var ifr = document.getElementsByTagName('iframe')[0];
+		ifr.onload = function(event) {
+			var ifrArr = top.frames[0].arr;
+			console.log(ifrArr instanceof Array);
+			console.log(ifrArr.constructor === Array);
+			console.log(Array.isArray(ifrArr));
+			console.log(Object.prototype.toString.call(ifrArr) === '[object Array]');
+		} 
+	</script>
+</body>
+</html>
