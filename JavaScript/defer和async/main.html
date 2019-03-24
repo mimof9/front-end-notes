@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ifr</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="./hello.js" defer></script>
+	<script type="text/javascript" src="./hello1.js" async></script>
+</head>
+<body>
+	<script type="text/javascript">
+		console.log('main');
+		window.onload = function() {
+			console.log('main loaded');
+		}
+	</script>
+</body>
+</html>
